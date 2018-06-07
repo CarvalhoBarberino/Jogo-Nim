@@ -1,7 +1,8 @@
 
 public class Jogo {
 	//****
-	private boolean vezDoComputador, fimDeJogo;
+	private boolean vezDoComputador;
+	public boolean fimDeJogo;
 	short computadorVence;
 	private short[] l;
 	//****
@@ -33,12 +34,31 @@ public class Jogo {
 		if(!fimDeJogo && (0 <= l[linha] - quantidade)){
 			l[linha] = (short) (l[linha] - quantidade);
 			vezDoComputador = !vezDoComputador;
+			mostrar();
 		}
-		if(total() == 2){
-			fimDeJogo = true;
-			if(vezDoComputador) {computadorVence = 1;}
-		}
-		if(vezDoComputador) {}
+		mostraVez();
+		ultimaAnalise();
 	}
 	//****
+	public void mostraVez() {
+		if(vezDoComputador) {System.out.println("Minha vez de jogar");}
+		else {System.out.println("Sua vez de jogar");}
+	}
+	//****
+	public boolean ultimaAnalise() {
+		if(total() == 1) {
+			fimDeJogo = true;
+			if(vezDoComputador) {
+				System.out.println("/nVoce venceu\n");
+				computadorVence = -1;
+				return false;
+			}
+			else {
+				System.out.println("\nEu venci\n");
+				computadorVence = 1;
+				return true;
+			}
+		}
+		return false;
+	}
 }
