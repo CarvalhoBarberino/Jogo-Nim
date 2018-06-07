@@ -1,5 +1,5 @@
 
-public class Jogo {
+public class Jogo implements Cloneable {
 	//****
 	private boolean vezDoComputador;
 	public boolean fimDeJogo;
@@ -59,6 +59,28 @@ public class Jogo {
 				return true;
 			}
 		}
+		if(total() == 2) {
+			fimDeJogo = true;
+			if(vezDoComputador) {
+				System.out.println("/nEu venci\n");
+				computadorVence = -1;
+				return true;
+			}
+			else {
+				System.out.println("\nVoce venceu\n");
+				computadorVence = -1;
+				return false;
+			}
+		}
 		return false;
+	}
+	public Jogo getClone() {
+		try {
+			return (Jogo) super.clone();
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 }
