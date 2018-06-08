@@ -1,5 +1,5 @@
 
-public class Jogo implements Cloneable {
+public class Jogo implements Cloneable{
 	//****
 	private boolean vezDoComputador;
 	public boolean fimDeJogo;
@@ -74,13 +74,18 @@ public class Jogo implements Cloneable {
 		}
 		return false;
 	}
-	public Jogo getClone() {
+	//****
+	public Jogo getClone(){
 		try {
-			return (Jogo) super.clone();
+			Jogo r = (Jogo)super.clone();
+			r.l = new short[4];
+			for(int i = 0; i < r.l.length; i++){
+				r.l[i] = this.l[i];
+			}
+			return r;
 		} catch (CloneNotSupportedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
+			return new Jogo();
 		}
 	}
 }
