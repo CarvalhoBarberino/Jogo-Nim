@@ -49,7 +49,7 @@ public class Jogo implements Cloneable{
 		if(total() == 1) {
 			fimDeJogo = true;
 			if(vezDoComputador) {
-				System.out.println("/nVoce venceu\n");
+				System.out.println("\nVoce venceu\n");
 				computadorVence = -1;
 				return false;
 			}
@@ -62,7 +62,7 @@ public class Jogo implements Cloneable{
 		if(total() == 2) {
 			fimDeJogo = true;
 			if(vezDoComputador) {
-				System.out.println("/nEu venci\n");
+				System.out.println("\nEu venci\n");
 				computadorVence = -1;
 				return true;
 			}
@@ -87,5 +87,20 @@ public class Jogo implements Cloneable{
 			e.printStackTrace();
 			return new Jogo();
 		}
+	}
+	//****
+	public void jogada(int aleatorio){
+		int modulo = (aleatorio % (total() - 1)) + 1;
+		int linha = 0, q = 0;
+		for(int i = 1; i < modulo; i++){
+			if(i > l[linha] + q){
+				q = q + l[linha];
+				linha++;
+			}
+			
+			System.out.println("depois: i=" + i + " l[" + linha + "]=" + l[linha] + " q=" + q);
+		}
+		System.out.println(linha + " " + (modulo - q - 1));
+		remover(linha, modulo - q - 1);
 	}
 }
